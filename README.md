@@ -11,10 +11,24 @@ From the *interview-api* project. These fixes are pasted later down in this file
 * Write the client React code in the present project
 
 ## Comments to Interviewers
-To Jeff Tassin and Austinm Hendry:
+To Jeff Tassin and Austin Hendry:
 
-Our meeting ended with me blocked on a bug with the client code.  
-I found the solution almost immediately after we hung up.
+First, I realized that the server layer in my code was 
+unnecessary.  It was sufficient to simply point the 
+proxy in [package.json](https://github.com/gregsandell/semanticbitsfrontendchallenge/blob/master/package.json) directlty at
+*http://localhost:9000*, where the `interview-api` server is running.  That
+server code has been removed.
+
+Second, you may recall that our meeting ended with me blocked on a bug; 
+I found it's source:
+
+In my server code (now deleted), I set the endpoint URL to 
+`http://localhost:9000/heroes` and my server's endpoint 
+was calling `/heroes` from that, resulting in the mistaken
+URL `http://localhost:9000/heroes/heroes`
+  
+I found the solution within 60 seconds of hanging up the call! :-)
+
 
 ## Instructions
 1. Have Node.js v.14 installed
